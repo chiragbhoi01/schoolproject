@@ -1,0 +1,260 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-primary: #9a4601;
+    --color-secondary: #2c694e;
+    --color-bg: #fff8f0;
+    --color-surface: #ffffff;
+    --color-text: #1f2937;
+  }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: 'Outfit', system-ui, sans-serif;
+    background-color: #fff8f0;
+    color: #1f2937;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  .dark body {
+    background-color: #0f0f0f;
+    color: #f9fafb;
+  }
+
+  ::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: rgba(154, 70, 1, 0.25);
+    border-radius: 99px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(154, 70, 1, 0.5);
+  }
+}
+
+@layer components {
+  .card {
+    @apply bg-white rounded-2xl shadow-card border border-orange-50 transition-all duration-300;
+  }
+
+  .dark .card {
+    @apply bg-gray-900 border-gray-800;
+  }
+
+  .card:hover {
+    @apply shadow-card-hover;
+  }
+
+  .btn-primary {
+    @apply bg-primary text-white px-5 py-2.5 rounded-xl font-semibold text-sm 
+           hover:bg-primary-700 active:scale-95 transition-all duration-200 
+           shadow-sm hover:shadow-md flex items-center gap-2;
+  }
+
+  .btn-secondary {
+    @apply bg-secondary text-white px-5 py-2.5 rounded-xl font-semibold text-sm 
+           hover:bg-secondary-800 active:scale-95 transition-all duration-200 
+           shadow-sm hover:shadow-md flex items-center gap-2;
+  }
+
+  .btn-ghost {
+    @apply text-gray-600 px-4 py-2.5 rounded-xl font-medium text-sm 
+           hover:bg-orange-50 active:scale-95 transition-all duration-200 flex items-center gap-2;
+  }
+
+  .input-field {
+    @apply w-full px-4 py-2.5 rounded-xl border border-gray-200 bg-white text-gray-800 
+           text-sm placeholder-gray-400 outline-none transition-all duration-200
+           focus:ring-2 focus:ring-primary/20 focus:border-primary;
+  }
+
+  .dark .input-field {
+    @apply bg-gray-800 border-gray-700 text-gray-100 placeholder-gray-500;
+  }
+
+  .badge {
+    @apply inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-semibold;
+  }
+
+  .badge-green {
+    @apply badge bg-green-50 text-green-700;
+  }
+
+  .badge-red {
+    @apply badge bg-red-50 text-red-700;
+  }
+
+  .badge-orange {
+    @apply badge bg-orange-50 text-orange-700;
+  }
+
+  .badge-blue {
+    @apply badge bg-blue-50 text-blue-700;
+  }
+
+  .badge-purple {
+    @apply badge bg-purple-50 text-purple-700;
+  }
+
+  .stat-card {
+    @apply card p-6 flex items-center gap-5;
+  }
+
+  .skeleton {
+    @apply bg-gradient-to-r from-gray-100 via-gray-200 to-gray-100 rounded-lg animate-shimmer;
+    background-size: 200% 100%;
+  }
+
+  .dark .skeleton {
+    @apply from-gray-800 via-gray-700 to-gray-800;
+  }
+
+  .sidebar-link {
+    @apply flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium 
+           transition-all duration-200 cursor-pointer select-none;
+  }
+
+  .sidebar-link-active {
+    @apply sidebar-link bg-primary text-white shadow-sm;
+  }
+
+  .sidebar-link-inactive {
+    @apply sidebar-link text-gray-600 hover:bg-orange-50 hover:text-primary;
+  }
+
+  .dark .sidebar-link-inactive {
+    @apply text-gray-400 hover:bg-gray-800 hover:text-orange-400;
+  }
+
+  .page-header {
+    @apply mb-8;
+  }
+
+  .page-title {
+    @apply text-2xl font-bold text-gray-900 mb-1;
+  }
+
+  .dark .page-title {
+    @apply text-gray-100;
+  }
+
+  .page-subtitle {
+    @apply text-sm text-gray-500;
+  }
+
+  .section-title {
+    @apply text-lg font-semibold text-gray-800 mb-4;
+  }
+
+  .dark .section-title {
+    @apply text-gray-200;
+  }
+
+  .table-container {
+    @apply overflow-x-auto rounded-2xl border border-orange-50;
+  }
+
+  .table {
+    @apply w-full text-sm;
+  }
+
+  .table thead th {
+    @apply px-5 py-3.5 text-left text-xs font-semibold text-gray-500 uppercase tracking-wide
+           bg-orange-50/60 border-b border-orange-100;
+  }
+
+  .dark .table thead th {
+    @apply bg-gray-800 border-gray-700 text-gray-400;
+  }
+
+  .table tbody td {
+    @apply px-5 py-4 text-gray-700 border-b border-gray-50 align-middle;
+  }
+
+  .dark .table tbody td {
+    @apply text-gray-300 border-gray-800;
+  }
+
+  .table tbody tr:last-child td {
+    @apply border-b-0;
+  }
+
+  .table tbody tr {
+    @apply hover:bg-orange-50/30 transition-colors duration-150;
+  }
+
+  .dark .table tbody tr {
+    @apply hover:bg-gray-800/50;
+  }
+
+  .modal-overlay {
+    @apply fixed inset-0 bg-black/40 backdrop-blur-sm z-50 flex items-center justify-center p-4;
+  }
+
+  .modal-content {
+    @apply bg-white rounded-2xl shadow-2xl w-full max-w-lg max-h-[90vh] overflow-y-auto;
+  }
+
+  .dark .modal-content {
+    @apply bg-gray-900;
+  }
+
+  .glass {
+    @apply backdrop-blur-sm bg-white/80 border border-white/20;
+  }
+
+  .dark .glass {
+    @apply bg-gray-900/80 border-gray-700/30;
+  }
+
+  .progress-bar {
+    @apply h-2 rounded-full overflow-hidden bg-gray-100;
+  }
+
+  .dark .progress-bar {
+    @apply bg-gray-700;
+  }
+
+  .progress-fill {
+    @apply h-full rounded-full transition-all duration-700 ease-out;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .gradient-primary {
+    background: linear-gradient(135deg, #9a4601, #c2410c);
+  }
+
+  .gradient-secondary {
+    background: linear-gradient(135deg, #2c694e, #16a34a);
+  }
+
+  .gradient-warm {
+    background: linear-gradient(135deg, #fff8f0, #fed7aa);
+  }
+}
